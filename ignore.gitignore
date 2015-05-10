@@ -1,0 +1,12 @@
+bin
+build
+include
+lib
+man
+share
+Scripts
+.Python
+*.pyc
+*~
+*.db
+.DS_Store
