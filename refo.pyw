@@ -49,7 +49,7 @@ class MontyPython :
         self.extencao.set(0)
         for txt, val in (('jpg','0'),('png','1')):
             a=Radiobutton(caixaex,text=txt, value=val,variable=self.extencao).pack(side=LEFT)
-        button_renomear=Button(inter, text="Renoear", command=self.renomear).grid(row=4, column=1, sticky=W, pady=3, padx=3)
+        button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=4, column=1, sticky=W, pady=3, padx=3)
         button_sair=Button(inter, text="Sair", command=self.sair).grid(row=4, column=3, sticky=E, pady=3, padx=3)
 
         
@@ -108,4 +108,4 @@ class MontyPython :
 
 swallow=Tk()
 MontyPython(swallow)
-swallow.mainloop()
+sys;exit(swallow.mainloop())
