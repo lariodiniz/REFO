@@ -108,4 +108,4 @@ class MontyPython :
 
 swallow=Tk()
 MontyPython(swallow)
-sys;exit(swallow.mainloop())
+sys.exit(swallow.mainloop())
