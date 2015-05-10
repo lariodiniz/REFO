@@ -102,7 +102,7 @@ class MontyPython :
 """)
 
     def quem(self):
-        tkMessageBox.showinfo("Quem Somos", "REFO foi criado por Lário Diniz e distribuído gratuitamente, seu código é todo em Python e pode ser baixado no github.\n\n Para criticas, sugestões ou reportar erros, enviar email para lariodiniz@gmail.com.")
+        tkMessageBox.showinfo("Quem Somos", "REFO foi criado por Lário Diniz e distribuído gratuitamente, seu código é todo em Python e pode ser baixado no https://github.com/lariodiniz/REFO.\n\n Para criticas, sugestões ou reportar erros, enviar email para lariodiniz@gmail.com.")
 
 
 
