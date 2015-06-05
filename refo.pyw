@@ -1,7 +1,8 @@
 # coding: utf-8
 
 from Tkinter import *
-import tkFileDialog, refocore, tkMessageBox, random
+import shutil
+import tkFileDialog, refocore, tkMessageBox, os
 
 class MontyPython :
     def __init__(self, janela):
@@ -47,10 +48,16 @@ class MontyPython :
         extencao=Label(inter, text='Extensão das fotos:').grid(row=3, column=1)        
         self.extencao = StringVar(caixaex)
         self.extencao.set(0)
-        for txt, val in (('jpg','0'),('png','1')):
+        for txt, val in (('jpg','0'),('png','1'),('gif','2'),('RAW','3')):
             a=Radiobutton(caixaex,text=txt, value=val,variable=self.extencao).pack(side=LEFT)
-        button_renomear=Button(inter, text="Renoear", command=self.renomear).grid(row=4, column=1, sticky=W, pady=3, padx=3)
-        button_sair=Button(inter, text="Sair", command=self.sair).grid(row=4, column=3, sticky=E, pady=3, padx=3)
+
+        self.varm= IntVar()
+        m = Checkbutton(inter, text="Mover fotos repetidas", variable=self.varm).grid(row=4, column=1)
+
+        self.varc= IntVar()
+        c = Checkbutton(inter, text="Apagar fotos repetidas", variable=self.varc).grid(row=5, column=1)
+        button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=6, column=1, sticky=W, pady=3, padx=3)
+        button_sair=Button(inter, text="Sair", command=self.sair).grid(row=6, column=3, sticky=E, pady=3, padx=3)
 
         
         
@@ -67,23 +74,51 @@ class MontyPython :
         
     def renomear(self):             
         
-        caminho = self.pasta.get()
+        self.caminho = self.pasta.get()
         extencao=self.extencao.get()
         nome=self.nome.get()
+        
         if extencao == "0":
             extencao='jpg'
         elif extencao == "1":
             extencao='png'
+        elif extencao == "2":
+            extencao='gif'
+        elif extencao == "3":
+            extencao='RAW'
             
-        if caminho == '':
+        if self.caminho == '':
             tkMessageBox.showerror("Selecione a Pasta com as fotos", "Selecione a Pasta com as fotos que serão renomeadas")        
         else:
-            a=refocore.Renomear(caminho, extencao, nome)
+            if self.varm.get() == 1:
+                self.moverfotos(refocore.Analise(self.caminho, extencao))
+            else:                
+                if self.varc.get() == 1:
+                    self.result = tkMessageBox.askquestion("Apagar Fotos Repitidas", "As fotos repetidas serão apagadas, Você tem certeza?", icon='question')
+                    if self.result == 'yes':
+                        self.apagarfotos(refocore.Analise(self.caminho, extencao))
+
+            a=refocore.Renomear(self.caminho, extencao, nome)
             if a == 1:
                 tkMessageBox.showinfo("Fotos renomeados", 'Suas Fotos foram renomeadas')
             elif a == 0:
-                tkMessageBox.showerror("Fotos não renomeados", 'Suas Fotos não foram renomeadas.\nTente mudar o campo "Nome para as Fotos".')       
-    
+                tkMessageBox.showerror("Fotos não renomeados", 'Suas Fotos não foram renomeadas.\nTente mudar o campo "Nome para as Fotos".')
+
+    def apagarfotos(self, a):
+        dic=a        
+        for x in dic:
+            for y in dic[x]:
+                os.remove(self.caminho+'/'+y)
+    def moverfotos(self, a):
+        dic = a
+        if dic != {}:
+            os.mkdir(self.caminho+"/"+"Fotos Repitidas")       
+        for x in dic:
+            for y in dic[x]:
+                shutil.move(self.caminho+'/'+y, self.caminho+"/"+"Fotos Repitidas")
+
+
+        
     
     def sair(self):
         self.janela.destroy()
@@ -98,6 +133,10 @@ class MontyPython :
       
 3° - Escolha a extensão das fotos.
 
+4° - Caso Você queira Mover as Fotos Repitidas marque "Mover fotos repetidas" um diretório será criado dentro do diretorio das fotos.
+
+4° - Caso Você queira apagar as Fotos Repitidas marque "Apagar fotos repetidas"
+
 4° - aperte em Renomear.
 """)
 
@@ -106,6 +145,7 @@ class MontyPython :
 
 
 
+
 swallow=Tk()
 MontyPython(swallow)
-swallow.mainloop()
+sys.exit(swallow.mainloop())
