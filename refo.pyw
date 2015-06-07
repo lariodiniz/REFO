@@ -57,10 +57,6 @@ class MontyPython :
         c = Checkbutton(inter, text="Apagar fotos repetidas", variable=self.varc).grid(row=5, column=1)
         button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=6, column=1, sticky=W, pady=3, padx=3)
         button_sair=Button(inter, text="Sair", command=self.sair).grid(row=6, column=3, sticky=E, pady=3, padx=3)
-        button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=4, column=1, sticky=W, pady=3, padx=3)
-        button_sair=Button(inter, text="Sair", command=self.sair).grid(row=4, column=3, sticky=E, pady=3, padx=3)
-
-
         
         
  #========================Funçoes dos Botões===========================#
