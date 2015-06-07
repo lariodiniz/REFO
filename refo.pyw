@@ -50,19 +50,16 @@ class MontyPython :
         self.extencao.set(0)
         for txt, val in (('jpg','0'),('png','1'),('gif','2'),('RAW','3')):
             a=Radiobutton(caixaex,text=txt, value=val,variable=self.extencao).pack(side=LEFT)
-<<<<<<< HEAD
-
-        self.varm= IntVar()
+            
+        self.varm= IntVar()      
         m = Checkbutton(inter, text="Mover fotos repetidas", variable=self.varm).grid(row=4, column=1)
-
         self.varc= IntVar()
         c = Checkbutton(inter, text="Apagar fotos repetidas", variable=self.varc).grid(row=5, column=1)
         button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=6, column=1, sticky=W, pady=3, padx=3)
         button_sair=Button(inter, text="Sair", command=self.sair).grid(row=6, column=3, sticky=E, pady=3, padx=3)
-=======
         button_renomear=Button(inter, text="Renomear", command=self.renomear).grid(row=4, column=1, sticky=W, pady=3, padx=3)
         button_sair=Button(inter, text="Sair", command=self.sair).grid(row=4, column=3, sticky=E, pady=3, padx=3)
->>>>>>> 8882d1a5b65583517dc191a4a3f62ba20dc66f06
+
 
         
         
