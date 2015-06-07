@@ -131,9 +131,9 @@ class MontyPython :
       
 3° - Escolha a extensão das fotos.
 
-4° - Caso Você queira Mover as Fotos Repitidas marque "Mover fotos repetidas" um diretório será criado dentro do diretorio das fotos.
+4° - Caso Você queira Mover as Fotos Repetidas marque "Mover fotos repetidas" um diretório será criado dentro do diretorio das fotos.
 
-4° - Caso Você queira apagar as Fotos Repitidas marque "Apagar fotos repetidas"
+4° - Caso Você queira apagar as Fotos Repetidas marque "Apagar fotos repetidas"
 
 4° - aperte em Renomear.
 """)
